@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto: Estrella Fugaz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
+    <h1 class="text-3xl font-bold mb-4">Estrella Fugaz</h1>
+    <canvas id="canvas" width="400" height="400" class="bg-white rounded-lg shadow-lg"></canvas>
+    <a href="pagprincipal.html" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Volver a la Página Principal</a>
+
+    <script>
+        // --- Configuración inicial del lienzo ---
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // --- Funciones de ayuda para dibujar ---
+        const background = (r, g, b) => { ctx.fillStyle = `rgb(${r},${g},${b})`; ctx.fillRect(0, 0, 400, 400); };
+        const fill = (r, g, b) => { ctx.fillStyle = `rgb(${r},${g},${b})`; };
+        const noFill = () => { /* No se usa en este código */ };
+        const stroke = (r, g, b) => { ctx.strokeStyle = `rgb(${r},${g},${b})`; };
+        const noStroke = () => { ctx.strokeStyle = 'rgba(0,0,0,0)'; };
+        const ellipse = (x, y, w, h) => {
+            ctx.beginPath();
+            ctx.ellipse(x, y, w / 2, h / 2, 0, 0, 2 * Math.PI);
+            ctx.fill();
+        };
+        const rect = (x, y, w, h) => {
+            ctx.fillRect(x, y, w, h);
+        };
+
+        // --- Tu código de dibujo ---
+
+        var estrellaX = 0;
+        var estrellaY = 20;
+
+        var draw = function() {
+            background(29, 40, 115);
+            
+            noStroke();
+            
+            fill(240, 240, 210);
+            ellipse(320, 80, 60, 60);
+            
+            fill(40, 60, 40);
+            rect(0, 350, 400, 50);
+            
+            estrellaX += 3;
+            estrellaY += 1;
+            
+            fill(255, 242, 0);
+            ellipse(estrellaX, estrellaY, 12, 12);
+        };
+
+        // --- Bucle de Animación ---
+        // Esto replica la funcionalidad de Khan Academy, llamando a draw() repetidamente.
+        function animate() {
+            draw();
+            requestAnimationFrame(animate);
+        }
+
+        // Iniciar la animación
+        animate();
+        
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto: Día Nevado Soleado</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
+    <h1 class="text-3xl font-bold mb-4">Día Nevado Soleado</h1>
+    <canvas id="canvas" width="400" height="400" class="bg-white rounded-lg shadow-lg"></canvas>
+    <a href="pagprincipal.html" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Volver a la Página Principal</a>
+
+    <script>
+        // --- Configuración inicial del lienzo ---
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // --- Funciones de ayuda para dibujar (como en Khan Academy) ---
+        const background=(r,g,b)=>{ctx.fillStyle=`rgb(${r},${g},${b})`;ctx.fillRect(0,0,400,400);};
+        const fill=(r,g,b)=>{ctx.fillStyle=`rgb(${r},${g},${b})`;};
+        const stroke=(r,g,b)=>{ctx.strokeStyle=`rgb(${r},${g},${b})`;};
+        const ellipse=(x,y,w,h)=>{ctx.beginPath();ctx.ellipse(x,y,w/2,h/2,0,0,2*Math.PI);ctx.fill();ctx.stroke();};
+        const rect=(x,y,w,h)=>{ctx.fillRect(x,y,w,h);ctx.strokeRect(x,y,w,h);};
+        const line=(x1,y1,x2,y2)=>{ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();};
+
+        // --- Tu código de dibujo ---
+        
+        // Colores por defecto para los bordes
+        stroke(0, 0, 0);
+        ctx.lineWidth = 1;
+
+        // Código que pegaste para el día nevado soleado
+        background(59, 212, 207);
+
+        // The ground
+        fill(79, 247, 13);
+        rect(0, 300, 400, 100);
+
+        // The sun
+        fill(245, 214, 14);
+        ellipse(80, 64, 100, 100);
+
+        // The snowman
+        fill(255, 255, 255);
+        ellipse(200, 300, 150, 150);
+        ellipse(200, 200, 100, 100);
+        ellipse(200, 120, 75, 75);
+        
+    </script>
+</body>
+</html>
+

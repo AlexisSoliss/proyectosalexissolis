@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto: Muñeco de Nieve</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
+    <h1 class="text-3xl font-bold mb-4">Muñeco de Nieve</h1>
+    <canvas id="canvas" width="400" height="400" class="bg-white rounded-lg shadow-lg"></canvas>
+    <a href="pagprincipal.html" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Volver a la Página Principal</a>
+
+    <script>
+        // --- Configuración inicial del lienzo ---
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // --- Funciones de ayuda para dibujar (como en Khan Academy) ---
+        const background=(r,g,b)=>{ctx.fillStyle=`rgb(${r},${g},${b})`;ctx.fillRect(0,0,400,400);};
+        const fill=(r,g,b)=>{ctx.fillStyle=`rgb(${r},${g},${b})`;};
+        const stroke=(r,g,b)=>{ctx.strokeStyle=`rgb(${r},${g},${b})`;};
+        const ellipse=(x,y,w,h)=>{ctx.beginPath();ctx.ellipse(x,y,w/2,h/2,0,0,2*Math.PI);ctx.fill();ctx.stroke();};
+        const rect=(x,y,w,h)=>{ctx.fillRect(x,y,w,h);ctx.strokeRect(x,y,w,h);};
+        const line=(x1,y1,x2,y2)=>{ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();};
+
+        // --- Tu código de dibujo ---
+
+        // 1. Definir el entorno
+        background(135, 206, 235); // Fondo de cielo azul
+        fill(255, 255, 255);       // Relleno blanco para la nieve
+        stroke(0, 0, 0);          // Borde negro para las figuras
+        ctx.lineWidth = 1;
+
+        // 2. Dibujar las figuras que pegaste
+        rect(1, 319, 396, 79);      // Suelo
+
+        ellipse(200, 300, 150, 150); // Cuerpo base
+        ellipse(200, 200, 100, 100); // Cuerpo medio
+        ellipse(200, 120, 75, 75);   // Cabeza
+
+        line(41, 64, 156, 176);     // Brazo 1
+        line(338, 67, 243, 180);    // Brazo 2
+    </script>
+</body>
+</html>
+
+

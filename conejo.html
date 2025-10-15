@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto: Dientes de Conejo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
+    <h1 class="text-3xl font-bold mb-4">Dientes de Conejo</h1>
+    <canvas id="canvas" width="400" height="400" class="bg-white rounded-lg shadow-lg"></canvas>
+    <a href="pagprincipal.html" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Volver a la Página Principal</a>
+
+    <script>
+        // --- Configuración inicial del lienzo ---
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // --- Variables de estado para replicar Khan Academy ---
+        let isFilled = true;
+        let isStroked = true;
+
+        // --- Funciones de ayuda para dibujar ---
+        const background = (r, g, b) => { ctx.fillStyle = `rgb(${r},${g},${b})`; ctx.fillRect(0, 0, 400, 400); };
+        const fill = (r, g, b) => { isFilled = true; ctx.fillStyle = `rgb(${r},${g},${b})`; };
+        const noFill = () => { isFilled = false; };
+        const stroke = (r, g, b) => { isStroked = true; ctx.strokeStyle = `rgb(${r},${g},${b})`; };
+        const noStroke = () => { isStroked = false; };
+        
+        const ellipse = (x, y, w, h) => {
+            ctx.beginPath();
+            ctx.ellipse(x, y, w / 2, h / 2, 0, 0, 2 * Math.PI);
+            if (isFilled) { ctx.fill(); }
+            if (isStroked) { ctx.stroke(); }
+        };
+        const rect = (x, y, w, h) => {
+            if (isFilled) { ctx.fillRect(x, y, w, h); }
+            if (isStroked) { ctx.strokeRect(x, y, w, h); }
+        };
+        const line = (x1, y1, x2, y2) => {
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke(); // Line siempre tiene trazo
+        };
+
+        // --- Tu código de dibujo ---
+        
+        // Colores por defecto para empezar
+        background(200, 200, 200);
+        stroke(0, 0, 0);
+        fill(255, 255, 255);
+        ctx.lineWidth = 1;
+
+        // Código que pegaste para Dientes de Conejo
+        ellipse(150, 70, 60, 120);  // left ear
+        ellipse(240, 70, 60, 120);  // right ear
+
+        ellipse(200, 170, 150, 150);    // face
+
+        var tamañoojo = 41;
+        fill(0, 0, 0);
+        ellipse(170, 150, tamañoojo, tamañoojo);  // left eye
+        ellipse(230, 150, tamañoojo, tamañoojo);  // right eye
+
+        line(150, 200, 250, 200);   // mouth
+
+        var tamañodiente = 31;
+        noFill(); // <-- Esto ahora funciona como esperas
+        stroke(0, 0, 0); // Nos aseguramos de que el borde sea negro
+        rect(185, 200, 15, tamañodiente); // left tooth
+        rect(200, 200, 15, tamañodiente); // right tooth
+        
+    </script>
+</body>
+</html>
+

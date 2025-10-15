@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto: ¿Qué hay de cena?</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
+    <h1 class="text-3xl font-bold mb-4">¿Qué hay de cena?</h1>
+    <canvas id="canvas" width="400" height="400" class="bg-white rounded-lg shadow-lg"></canvas>
+    <a href="pagprincipal.html" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Volver a la Página Principal</a>
+
+    <script>
+        // --- Configuración inicial del lienzo ---
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // --- Funciones de ayuda para dibujar (como en Khan Academy) ---
+        const background=(r,g,b)=>{ctx.fillStyle=`rgb(${r},${g},${b})`;ctx.fillRect(0,0,400,400);};
+        const fill=(r,g,b)=>{ctx.fillStyle=`rgb(${r},${g},${b})`;};
+        const stroke=(r,g,b)=>{ctx.strokeStyle=`rgb(${r},${g},${b})`;};
+        const ellipse=(x,y,w,h)=>{ctx.beginPath();ctx.ellipse(x,y,w/2,h/2,0,0,2*Math.PI);ctx.fill();ctx.stroke();};
+        const rect=(x,y,w,h,r)=>{ if(r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();ctx.fill();ctx.stroke();}else{ctx.fillRect(x,y,w,h);ctx.strokeRect(x,y,w,h);}};
+        const line=(x1,y1,x2,y2)=>{ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();};
+
+        // --- Tu código de dibujo ---
+        
+        // Colores por defecto para los bordes
+        stroke(0, 0, 0);
+        ctx.lineWidth = 1;
+
+        // Código que pegaste para la cena
+        background(186, 145, 20); // wooden table
+
+        //plato
+        fill(255, 255, 255);
+        ellipse(200, 200, 250, 250); 
+        fill(230, 230, 230);
+        ellipse(200, 200, 200, 200); 
+
+        //masa
+        fill(255, 204, 102);
+        ellipse(200, 200, 200, 200); 
+
+        //tomate
+        fill(255, 80, 80);
+        ellipse(200, 200, 180, 180);
+
+        //queso
+        fill(255, 230, 128);
+        ellipse(200, 200, 160, 160);
+
+        //Peperonis
+        fill(255,0,0);
+        ellipse(160, 190, 30, 30); 
+        ellipse(200, 150, 30, 30); 
+        ellipse(240, 230, 30, 30); 
+        ellipse(180, 230, 30, 30); 
+        ellipse(235, 175, 30, 30); 
+
+        //cuchillo
+        fill(180, 180, 180);
+        rect(350, 140, 34, 77);
+
+        fill(120, 80, 40);  //mango del cuchillo
+        rect(350, 214, 20, 62, 5);
+
+        //tenedor
+        fill(180, 180, 180);
+        rect(20, 160, 5, 22, 5);
+        rect(27, 160, 5, 22, 5);
+        rect(34, 160, 5, 22, 5);
+        rect(20, 177, 20, 9, 5);
+
+        fill(120, 80, 80);      //mango del tenedor
+        rect(26, 183, 8, 67, 5);
+        
+    </script>
+</body>
+</html>
+
